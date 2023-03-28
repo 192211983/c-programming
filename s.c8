@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int main() {
+    int num, digit, sum = 0;
+    
+    printf("Enter a number: ");
+    scanf("%d", &num);
+    
+    // loop through each digit and add it to the sum
+    for (int i = num; i > 0; i /= 10) {
+        digit = i % 10;
+        sum += digit;
+    }
+    
+    printf("Sum of digits: %d", sum);
+    
+    return 0;
+}
