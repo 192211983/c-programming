@@ -1,0 +1,18 @@
+#include <stdio.h>
+
+int main() {
+    int num, reverse = 0, remainder;
+    
+    printf("Input number: ");
+    scanf("%d", &num);
+    
+    // loop through each digit of the number
+    for (; num != 0; num /= 10) {
+        remainder = num % 10;  // get the last digit of the number
+        reverse = reverse * 10 + remainder;  // add the digit to the reversed number
+    }
+    
+    printf("Reverse of %d = %d", num, reverse);
+    
+    return 0;
+}
