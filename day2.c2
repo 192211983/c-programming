@@ -1,0 +1,20 @@
+#include <stdio.h>
+
+int main() {
+    int n, i, largest1, largest2;
+    printf("Enter the number of elements: ");
+    scanf("%d", &n);
+    int arr[n];
+    printf("Enter the array elements:\n");
+    for (i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+    }
+    // initialize largest1 and largest2 with first two elements of array
+    if (arr[0] > arr[1]) {
+        largest1 = arr[0];
+        largest2 = arr[1];
+    } else {
+        largest1 = arr[1];
+        largest2 = arr[0];
+    }
+    // iterate through the rest of the array to find largest1
