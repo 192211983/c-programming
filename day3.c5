@@ -1,0 +1,26 @@
+int main()
+{
+    char str[100];
+    int freq[256] = {0};
+    int i, max = 0, len;
+
+    printf("swetha");
+    fgets(str, 100, stdin);
+
+    len = strlen(str);
+
+    for (i = 0; i < len; i++) {
+        freq[str[i]]++;
+    }
+
+    for (i = 0; i < 256; i++) {
+        if (freq[i] > freq[max]) {
+            max = i;
+        }
+    }
+
+    printf("Max repeated character in the string = %c\n", max);
+    printf("It occurs %d times\n", freq[max]);
+
+    return 0;
+}
