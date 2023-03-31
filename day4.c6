@@ -1,0 +1,91 @@
+#include <stdio.h>
+#include <string.h>
+
+struct book {
+    char title[50];
+    char author[50];
+    int book_id;
+};
+
+struct book books[100];
+int book_count = 0;
+
+void add_book() {
+    printf("Enter book title: ");
+    scanf("%s", books[book_count].title);
+    printf("Enter book author: ");
+    scanf("%s", books[book_count].author);
+    printf("Enter book ID: ");
+    scanf("%d", &books[book_count].book_id);
+    book_count++;
+    printf("Book added successfully.\n");
+}
+
+void display_book(struct book b) {
+    printf("Title: %s\n", b.title);
+    printf("Author: %s\n", b.author);
+    printf("Book ID: %d\n", b.book_id);
+}
+
+void display_all_books() {
+    if (book_count == 0) {
+        printf("No books in the library.\n");
+        return;
+    }
+    printf("List of all books in the library:\n");
+    for (int i = 0; i < book_count; i++) {
+        display_book(books[i]);
+        printf("\n");
+    }
+}
+
+void list_books_by_author() {
+    char author[50];
+    printf("Enter author name: ");
+    scanf("%s", author);
+    int count = 0;
+    printf("List of books by %s:\n", author);
+    for (int i = 0; i < book_count; i++) {
+        if (strcmp(books[i].author, author) == 0) {
+            display_book(books[i]);
+            printf("\n");
+            count++;
+        }
+    }
+    if (count == 0) {
+        printf("No books found by %s.\n", author);
+    } else {
+        printf("%d book(s) found by %s.\n", count, author);
+    }
+}
+
+void list_book_count() {
+    printf("The library has %d book(s).\n", book_count);
+}
+
+int main() {
+    int choice;
+    while (1) {
+        printf("Enter your choice:\n");
+        printf("1. Add book details\n");
+        printf("2. Display book details\n");
+        printf("3. List all books of given author\n");
+        printf("4. List the count of books in the library\n");
+        printf("5. Exit\n");
+        scanf("%d", &choice);
+        switch (choice) {
+            case 1:
+                add_book();
+                break;
+            case 2:
+                display_all_books();
+                break;
+            case 3:
+                list_books_by_author();
+                break;
+            case 4:
+                list_book_count();
+                break;
+            case 5:
+                printf("Thank you")
+                }
