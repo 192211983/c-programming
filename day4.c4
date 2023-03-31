@@ -1,0 +1,45 @@
+#include <stdio.h>
+
+// Define a structure for customer details
+struct customer {
+    int account_no;
+    char name[50];
+    float balance;
+};
+
+// Function to print customer details whose balance is less than 100 Rs
+void print_customers(struct customer customers[], int n) {
+    printf("Customers with balance less than 100 Rs:\n");
+    for (int i = 0; i < n; i++) {
+        if (customers[i].balance < 100) {
+            printf("Account No: %d, Name: %s\n", customers[i].account_no, customers[i].name);
+        }
+    }
+}
+
+int main() {
+    // Create an array of customer structures with 3 customers
+    struct customer customers[3];
+
+    // Accept customer details from the user
+    for (int i = 0; i < 3; i++) {
+        printf("Enter details for customer %d:\n", i+1);
+        printf("Account No: ");
+        scanf("%d", &customers[i].account_no);
+        printf("Name: ");
+        scanf("%s", customers[i].name);
+        printf("Balance: ");
+        scanf("%f", &customers[i].balance);
+    }
+
+    // Print customer details
+    printf("Customer details:\n");
+    for (int i = 0; i < 3; i++) {
+        printf("Account No: %d, Name: %s, Balance: %.2f\n", customers[i].account_no, customers[i].name, customers[i].balance);
+    }
+
+    // Print customer details with balance less than 100 Rs
+    print_customers(customers, 3);
+
+    return 0;
+}
