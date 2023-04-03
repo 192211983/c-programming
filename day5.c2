@@ -1,0 +1,55 @@
+#include <stdio.h>
+#include <string.h>
+
+#define MAX_LINE_LENGTH 1000
+
+int main() {
+    char input_file_name[] = "input.txt";
+    char error_log_file_name[] = "error_log.txt";
+    char line[MAX_LINE_LENGTH];
+    FILE *input_file, *error_log_file;
+
+    // open input file
+    input_file = fopen(input_file_name, "r");
+    if (input_file == NULL) {
+        printf("Could not open file %s\n", input_file_name);
+        return 1;
+    }
+
+    // open error log file
+    error_log_file = fopen(error_log_file_name, "w");
+    if (error_log_file == NULL) {
+        printf("Could not create file %s\n", error_log_file_name);
+        fclose(input_file);
+        return 1;
+    }
+
+    // read from input file and write error lines to error log file
+    while (fgets(line, MAX_LINE_LENGTH, input_file) != NULL) {
+        if (strstr(line, "error") != NULL) {
+            fputs(line, error_log_file);
+        }
+    }
+
+    // close files
+    fclose(input_file);
+    fclose(error_log_file);
+
+    // open error log file and print contents to console
+    error_log_file = fopen(error_log_file_name, "r");
+    if (error_log_file == NULL) {
+        printf("Could not open file %s\n", error_log_file_name);
+        return 1;
+    }
+
+    printf("Contents of %s:\n", error_log_file_name);
+
+    while (fgets(line, MAX_LINE_LENGTH, error_log_file) != NULL) {
+        printf("%s", line);
+    }
+
+    // close file
+    fclose(error_log_file);
+
+    return 0;
+}
