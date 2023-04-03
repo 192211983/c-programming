@@ -1,0 +1,54 @@
+#include <stdio.h>
+
+int main() {
+    int arr[100], n, i, j, sum = 0, temp, mode, maxCount = 0, count;
+    float mean, median;
+    
+    printf("Enter the size of the array: ");
+    scanf("%d", &n);
+    
+    printf("Enter %d elements in the array:\n", n);
+    for(i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+        sum += arr[i];
+    }
+    
+    // Mean calculation
+    mean = (float) sum / n;
+    printf("Mean = %.2f\n", mean);
+    
+    // Median calculation
+    for(i = 0; i < n-1; i++) {
+        for(j = i+1; j < n; j++) {
+            if(arr[j] < arr[i]) {
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+        }
+    }
+    if(n % 2 == 0) {
+        median = (float) (arr[n/2] + arr[n/2 - 1]) / 2;
+    }
+    else {
+        median = (float) arr[n/2];
+    }
+    printf("Median = %.2f\n", median);
+    
+    // Mode calculation
+    for(i = 0; i < n; i++) {
+        count = 0;
+        for(j = 0; j < n; j++) {
+            if(arr[j] == arr[i]) {
+                count++;
+            }
+        }
+        if(count > maxCount) {
+            maxCount = count;
+            mode = arr[i];
+        }
+    }
+    printf("Mode = %d\n", mode);
+    
+    return 0;
+}
