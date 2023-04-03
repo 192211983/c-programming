@@ -1,0 +1,30 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+#define MAX_LINE_LENGTH 1024
+
+int main() {
+    FILE *input_file, *output_file;
+    char line[MAX_LINE_LENGTH];
+    char *token;
+
+    // Open the input file for reading
+    input_file = fopen("input.txt", "r");
+    if (input_file == NULL) {
+        perror("Error opening input file");
+        return EXIT_FAILURE;
+    }
+
+    // Open the output file for writing
+    output_file = fopen("output.txt", "w");
+    if (output_file == NULL) {
+        perror("Error opening output file");
+        return EXIT_FAILURE;
+    }
+
+    // Read each line of the input file
+    while (fgets(line, MAX_LINE_LENGTH, input_file) != NULL) {
+        // Replace all occurrences of "red" with "blue"
+        token = strtok(line, " ")
+        }
